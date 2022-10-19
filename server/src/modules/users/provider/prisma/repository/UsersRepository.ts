@@ -43,7 +43,11 @@ export class UsersRepository implements IUsersRepository {
       },
     });
   }
-  findByUsername(username: string): Promise<any> {
-    throw new Error("Method not implemented.");
+  async findByUsername(username: string): Promise<any> {
+    return await prisma.user.findFirst({
+      where: {
+        username,
+      },
+    });
   }
 }

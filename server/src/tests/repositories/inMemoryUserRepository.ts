@@ -12,7 +12,14 @@ export class UsersRepository implements IUsersRepository {
     this.users.push(user);
   }
   async update(data: IUpdateUserDTO): Promise<void> {
-    throw new Error("Method not implemented.");
+    const user = this.users.find((user) => user._id === data.id);
+
+    if (user) {
+      user._name = data.name;
+      user._username = data.username;
+      user._email = data.email;
+      user._updated_at = new Date();
+    }
   }
 
   async findByEmail(email: string): Promise<any> {

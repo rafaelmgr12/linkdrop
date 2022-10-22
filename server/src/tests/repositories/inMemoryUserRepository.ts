@@ -1,9 +1,9 @@
-import { ICreateUserDTO } from "modules/users/dtos/ICreateUserDTO";
-import { IUpdateUserDTO } from "modules/users/dtos/IUpdateUserDTO";
-import { User } from "modules/users/entities/User";
-import { IUsersRepository } from "modules/users/repositories/IUsersRepository";
+import { ICreateUserDTO } from "../../modules/users/dtos/ICreateUserDTO";
+import { IUpdateUserDTO } from "../../modules/users/dtos/IUpdateUserDTO";
+import { User } from "../../modules/users/entities/User";
+import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
 
-export class UsersRepository implements IUsersRepository {
+export class UsersRepositoryInMemory implements IUsersRepository {
   public users: User[] = [];
 
   async create(data: ICreateUserDTO): Promise<void> {

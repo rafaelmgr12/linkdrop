@@ -1,6 +1,7 @@
 import { SignUpUseCase } from "../../modules/users/useCases/signUp/SignUpUseCase";
 import { UsersRepositoryInMemory } from "../repositories/InMemoryUserRepository";
 import { beforeEach, describe, expect, it } from "vitest";
+import { AppError } from "../../errors/AppError";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let signUpUseCase: SignUpUseCase;
@@ -34,7 +35,7 @@ describe("All User Cases tests", () => {
         email: "user_test@example.com",
         password: "123456",
       })
-    ).rejects.toEqual(new Error("Email already registered"));
+    ).rejects.toEqual(new AppError("Email already registered"));
   });
   it("Should not allow to create a new user with same username from another", async () => {
     await signUpUseCase.execute({
@@ -50,6 +51,6 @@ describe("All User Cases tests", () => {
         email: "new_user_test@example.com",
         password: "123456",
       })
-    ).rejects.toEqual(new Error("Username already registered"));
+    ).rejects.toEqual(new AppError("Username already registered"));
   });
 });

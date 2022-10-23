@@ -43,14 +43,44 @@ describe("All User Cases tests", () => {
       username: "user_test",
       email: "user_test@example.com",
       password: "123456",
-    })
+    });
     await expect(
       signUpUseCase.execute({
         name: "User Test",
-        username: "user_test",  
+        username: "user_test",
         email: "new_user_test@example.com",
         password: "123456",
       })
     ).rejects.toEqual(new AppError("Username already registered"));
+  });
+  it("Should not allow to create a new user with empty name", async () => {
+    await expect(
+      signUpUseCase.execute({
+        name: "",
+        username: "user_test",
+        email: "user_test@example.com",
+        password: "123456",
+      })
+    ).rejects.toEqual(new AppError("Name is required"));
+  });
+  it("Should not allow to create a new user with empty username", async () => {
+    await expect(
+      signUpUseCase.execute({
+        name: "User Test",
+        username: "",
+        email: "userS_test@example.com",
+        password: "123456",
+      })
+    ).rejects.toEqual(new AppError("Username is required"));
+  });
+  it("Should not allow to create a new user with empty email", async () => {
+    await expect(
+      signUpUseCase.execute({
+        name: "User Test",
+        username: "user_test",
+        email: "",
+        password: "123456",
+      })
+    ).rejects.toEqual(new AppError("Email is required"));
   });
 });

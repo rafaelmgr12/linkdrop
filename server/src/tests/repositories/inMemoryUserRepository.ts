@@ -1,3 +1,4 @@
+import { AppError } from "../../errors/AppError";
 import { ICreateUserDTO } from "../../modules/users/dtos/ICreateUserDTO";
 import { IUpdateUserDTO } from "../../modules/users/dtos/IUpdateUserDTO";
 import { User } from "../../modules/users/entities/User";
@@ -13,17 +14,16 @@ export class UsersRepositoryInMemory implements IUsersRepository {
 
     return user;
   }
-  async update(data: IUpdateUserDTO): Promise<User | null> {
+  async update(data: IUpdateUserDTO): Promise<void> {
     const user = this.users.find((user) => user._id === data.id);
 
     if (!user) {
-      return null;
+      throw new AppError("User not found");
     }
     user._name = data.name;
     user._username = data.username;
     user._email = data.email;
     user._updated_at = new Date();
-    return user;
   }
 
   async findByEmail(email: string): Promise<any> {

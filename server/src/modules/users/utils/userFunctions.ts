@@ -11,7 +11,9 @@ export function validateRegistration(data: ICreateUserDTO): void {
     if (!data.email) {
         throw new AppError("Email is required");
     }
-
+    if (!data.password) {
+        throw new AppError("Password is required");
+    }
     
  
 }

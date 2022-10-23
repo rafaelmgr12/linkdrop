@@ -92,5 +92,13 @@ describe("All User Cases tests", () => {
         password: "",})
     ).rejects.toEqual(new AppError("Password is required"));
       });
-    
+  it("Should not allow to create a new user with weak password", async () => {
+    await expect(
+      signUpUseCase.execute({
+        name: "User Test",
+        username: "user_test",
+        email: "user_test@example.com",
+        password: "12345",
+      })).rejects.toEqual(new AppError("Password must have at least 8 characters, 1 letter and 1 number"));
+  });
 });

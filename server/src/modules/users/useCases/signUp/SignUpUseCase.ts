@@ -14,8 +14,11 @@ export class SignUpUseCase{
             throw new Error("Email already registered");
         }
 
-
-
+        const usernameAlreadyExists = await this.usersRepository.findByUsername(data.username);
+        if (usernameAlreadyExists) {
+            throw new Error("Username already registered");
+        }
+        
        const user = await this.usersRepository.create(data);
 
        return user;

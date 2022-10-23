@@ -20,6 +20,15 @@ export class SignUpUseCase {
     if (usernameAlreadyExists) {
       throw new AppError("Username already registered");
     }
+    if (!data.name) {
+      throw new AppError("Name is required");
+    }
+    if (!data.username) {
+      throw new AppError("Username is required");
+    }
+    if (!data.email) {
+      throw new AppError("Email is required");
+    }
 
     const hashPassword = await hash(data.password, 10);
     data.password = hashPassword;

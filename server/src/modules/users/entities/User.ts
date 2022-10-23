@@ -5,7 +5,7 @@ export class User {
   _name: string;
   _username: string;
   _email: string;
-  private _password: string;
+  _password: string;
   _created_at: Date;
   _updated_at: Date;
 
@@ -18,6 +18,8 @@ export class User {
     updated_at?: Date,
     id?: string
   ) {
+
+    
     this._id = id ?? crypto.randomUUID().toString();
     this._name = name;
     this._username = username;
@@ -27,4 +29,5 @@ export class User {
     this._updated_at = updated_at ?? new Date();
   }
 
+  
 }

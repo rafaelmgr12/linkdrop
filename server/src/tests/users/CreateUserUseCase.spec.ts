@@ -83,4 +83,14 @@ describe("All User Cases tests", () => {
       })
     ).rejects.toEqual(new AppError("Email is required"));
   });
+  it("Should not allow to create a new user with empty password", async () => {
+    await expect(
+      signUpUseCase.execute({
+        name: "User Test",
+        username: "user_test",
+        email: "user_test@example",
+        password: "",})
+    ).rejects.toEqual(new AppError("Password is required"));
+      });
+    
 });

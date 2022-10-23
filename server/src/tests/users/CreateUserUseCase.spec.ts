@@ -17,7 +17,6 @@ describe("All User Cases tests", () => {
       email: "user_test@example.com",
       password: "123456",
     });
-    console.log(user);
     expect(user).toHaveProperty("_id");
   });
   it("Should not allow to create a new user with same email from another", async () => {
@@ -36,5 +35,21 @@ describe("All User Cases tests", () => {
         password: "123456",
       })
     ).rejects.toEqual(new Error("Email already registered"));
+  });
+  it("Should not allow to create a new user with same username from another", async () => {
+    await signUpUseCase.execute({
+      name: "User Test",
+      username: "user_test",
+      email: "user_test@example.com",
+      password: "123456",
+    })
+    await expect(
+      signUpUseCase.execute({
+        name: "User Test",
+        username: "user_test",  
+        email: "new_user_test@example.com",
+        password: "123456",
+      })
+    ).rejects.toEqual(new Error("Username already registered"));
   });
 });

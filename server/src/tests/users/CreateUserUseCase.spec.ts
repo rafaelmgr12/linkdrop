@@ -1,5 +1,5 @@
 import { SignUpUseCase } from "../../modules/users/useCases/signUp/SignUpUseCase";
-import { UsersRepositoryInMemory } from "../repositories/inMemoryUserRepository";
+import { UsersRepositoryInMemory } from "../repositories/InMemoryUserRepository";
 import { beforeEach, describe, expect, it } from "vitest";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
@@ -17,7 +17,8 @@ describe("All User Cases tests", () => {
       email: "user_test@example.com",
       password: "123456",
     });
-    expect(user).toHaveProperty("id");
+    console.log(user);
+    expect(user).toHaveProperty("_id");
 
   });
 });

@@ -6,20 +6,24 @@ import { IUsersRepository } from "../../modules/users/repositories/IUsersReposit
 export class UsersRepositoryInMemory implements IUsersRepository {
   public users: User[] = [];
 
-  async create(data: ICreateUserDTO): Promise<void> {
+  async create(data: ICreateUserDTO): Promise<User> {
     const user = new User(data.name, data.username, data.email, data.password);
 
     this.users.push(user);
+
+    return user;
   }
-  async update(data: IUpdateUserDTO): Promise<void> {
+  async update(data: IUpdateUserDTO): Promise<User | null> {
     const user = this.users.find((user) => user._id === data.id);
 
-    if (user) {
-      user._name = data.name;
-      user._username = data.username;
-      user._email = data.email;
-      user._updated_at = new Date();
+    if (!user) {
+      return null;
     }
+    user._name = data.name;
+    user._username = data.username;
+    user._email = data.email;
+    user._updated_at = new Date();
+    return user;
   }
 
   async findByEmail(email: string): Promise<any> {

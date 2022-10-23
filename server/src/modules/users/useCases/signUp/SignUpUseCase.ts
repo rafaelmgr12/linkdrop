@@ -8,6 +8,14 @@ export class SignUpUseCase{
 
 
     async execute(data: ICreateUserDTO): Promise<User> {
+
+        const emailAlreadyExists = await this.usersRepository.findByEmail(data.email);
+        if (emailAlreadyExists) {
+            throw new Error("Email already registered");
+        }
+
+
+
        const user = await this.usersRepository.create(data);
 
        return user;

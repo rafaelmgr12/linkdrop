@@ -5,6 +5,7 @@ import { User } from "../../modules/users/entities/User";
 import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
 
 export class UsersRepositoryInMemory implements IUsersRepository {
+
   public users: User[] = [];
 
   async create(data: ICreateUserDTO): Promise<User> {
@@ -31,5 +32,12 @@ export class UsersRepositoryInMemory implements IUsersRepository {
   }
   async findByUsername(username: string): Promise<any> {
     return this.users.find((user) => user._username === username);
+  }
+  async findById(id: string): Promise<User> {
+    const user =  this.users.find((user) => user._id === id);
+    if (!user) {
+      throw new AppError("User not found");
+    }
+    return user;
   }
 }

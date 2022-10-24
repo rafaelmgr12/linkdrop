@@ -3,7 +3,7 @@ import { ICreateUserDTO } from "modules/users/dtos/ICreateUserDTO";
 import { User } from "modules/users/entities/User";
 import { IUsersRepository } from "modules/users/repositories/IUsersRepository";
 import { hash } from "bcrypt";
-import { validateRegistration, validateStrongPassword } from "../../utils/userFunctions";
+import { validadeEmail, validateRegistration, validateStrongPassword } from "../../utils/userFunctions";
 export class SignUpUseCase {
   constructor(private usersRepository: IUsersRepository) {}
 
@@ -22,6 +22,7 @@ export class SignUpUseCase {
       throw new AppError("Username already registered");
     }
     validateRegistration(data)
+    validadeEmail(data.email)
     validateStrongPassword(data.password)
 
     const hashPassword = await hash(data.password, 10);

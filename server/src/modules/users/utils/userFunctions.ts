@@ -20,9 +20,11 @@ export function validateRegistration(data: ICreateUserDTO): void {
 
 
 
-export function validadeEmail(email:string): boolean{
+export function validadeEmail(email:string): void{
     const re = /\S+@\S+\.\S+/;
-    return re.test(email);
+    if (!re.test(email)) {
+        throw new AppError("Invalid email");
+    }
 
 }
 

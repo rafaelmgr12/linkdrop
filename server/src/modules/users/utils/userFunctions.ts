@@ -28,7 +28,7 @@ export function validadeEmail(email:string): boolean{
 
 export function validateStrongPassword(password: string): void {
     const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-    if (re.test(password)){
+    if (!re.test(password)){
         throw new AppError("Password must have at least 8 characters, 1 letter and 1 number");
     }
 }

@@ -2,17 +2,17 @@ import { SignUpUseCase } from "../../modules/users/useCases/signUp/SignUpUseCase
 import { UsersRepositoryInMemory } from "../repositories/InMemoryUserRepository";
 import { beforeEach, describe, expect, it } from "vitest";
 import { AppError } from "../../errors/AppError";
-import { LoginUserCase } from "../../modules/users/useCases/login/LoginUserCase";
+import { LoginUseCase } from "../../modules/users/useCases/login/LoginUseCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let signUpUseCase: SignUpUseCase;
-let loginUserCase: LoginUserCase;
+let loginUseCase: LoginUseCase;
 
 describe("All User Cases tests", () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
     signUpUseCase = new SignUpUseCase(usersRepositoryInMemory);
-    loginUserCase = new LoginUserCase(usersRepositoryInMemory);
+    loginUseCase = new LoginUseCase(usersRepositoryInMemory);
   });
   it("Should allow to create a new user", async () => {
     const user = await signUpUseCase.execute({
@@ -120,7 +120,7 @@ describe("All User Cases tests", () => {
       email: "user_test@example.com",
       password: "usertest123",
   })
-    const token = await loginUserCase.execute({username: user._username, password: "usertest123"})
+    const token = await loginUseCase.execute({username: user._username, password: "usertest123"})
     expect(token).toHaveProperty("token");
 
   })

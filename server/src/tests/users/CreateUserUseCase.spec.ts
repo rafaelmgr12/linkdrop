@@ -2,14 +2,17 @@ import { SignUpUseCase } from "../../modules/users/useCases/signUp/SignUpUseCase
 import { UsersRepositoryInMemory } from "../repositories/InMemoryUserRepository";
 import { beforeEach, describe, expect, it } from "vitest";
 import { AppError } from "../../errors/AppError";
+import { LoginUserCase } from "../../modules/users/useCases/login/LoginUserCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let signUpUseCase: SignUpUseCase;
+let loginUserCase: LoginUserCase;
 
 describe("All User Cases tests", () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
     signUpUseCase = new SignUpUseCase(usersRepositoryInMemory);
+    loginUserCase = new LoginUserCase(usersRepositoryInMemory);
   });
   it("Should allow to create a new user", async () => {
     const user = await signUpUseCase.execute({
@@ -110,4 +113,15 @@ describe("All User Cases tests", () => {
         password: "usertest123",
       })).rejects.toEqual(new AppError("Invalid email"));
   });
+  it("Should be possible for a user to login", async() => {
+   const user  = await signUpUseCase.execute({
+      name: "User Test",
+      username: "user_test",
+      email: "user_test@example.com",
+      password: "usertest123",
+  })
+    const token = await loginUserCase.execute({username: user._username, password: "usertest123"})
+    expect(token).toHaveProperty("subject");
+
+  })
 });

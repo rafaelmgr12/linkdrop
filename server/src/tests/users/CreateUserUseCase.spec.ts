@@ -101,4 +101,13 @@ describe("All User Cases tests", () => {
         password: "2",
       })).rejects.toEqual(new AppError("Password must have at least 8 characters, 1 letter and 1 number"));
   });
+  it("Should not allow to create a new user with invalid email", async () => {
+    await expect(
+      signUpUseCase.execute({
+        name: "User Test",
+        username: "user_test",
+        email: "user_testexample.com",
+        password: "usertest123",
+      })).rejects.toEqual(new AppError("Invalid email"));
+  });
 });

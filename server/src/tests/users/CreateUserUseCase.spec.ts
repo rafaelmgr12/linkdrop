@@ -121,7 +121,7 @@ describe("All User Cases tests", () => {
       password: "usertest123",
   })
     const token = await loginUserCase.execute({username: user._username, password: "usertest123"})
-    expect(token).toHaveProperty("subject");
+    expect(token).toHaveProperty("token");
 
   })
 });

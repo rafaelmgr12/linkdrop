@@ -16,7 +16,7 @@ describe("All User Cases tests", () => {
       name: "User Test",
       username: "user_test",
       email: "user_test@example.com",
-      password: "123456",
+      password: "usertest123",
     });
     expect(user).toHaveProperty("_id");
   });
@@ -25,7 +25,7 @@ describe("All User Cases tests", () => {
       name: "User Test",
       username: "user_test",
       email: "user_test@example.com",
-      password: "123456",
+      password: "usertest123",
     });
 
     await expect(
@@ -33,7 +33,7 @@ describe("All User Cases tests", () => {
         name: "User Test",
         username: "user_test_2",
         email: "user_test@example.com",
-        password: "123456",
+        password: "usertest123",
       })
     ).rejects.toEqual(new AppError("Email already registered"));
   });
@@ -42,14 +42,14 @@ describe("All User Cases tests", () => {
       name: "User Test",
       username: "user_test",
       email: "user_test@example.com",
-      password: "123456",
+      password: "usertest123",
     });
     await expect(
       signUpUseCase.execute({
         name: "User Test",
         username: "user_test",
         email: "new_user_test@example.com",
-        password: "123456",
+        password: "usertest123",
       })
     ).rejects.toEqual(new AppError("Username already registered"));
   });
@@ -59,7 +59,7 @@ describe("All User Cases tests", () => {
         name: "",
         username: "user_test",
         email: "user_test@example.com",
-        password: "123456",
+        password: "usertest123",
       })
     ).rejects.toEqual(new AppError("Name is required"));
   });
@@ -69,7 +69,7 @@ describe("All User Cases tests", () => {
         name: "User Test",
         username: "",
         email: "userS_test@example.com",
-        password: "123456",
+        password: "usertest123",
       })
     ).rejects.toEqual(new AppError("Username is required"));
   });
@@ -79,7 +79,7 @@ describe("All User Cases tests", () => {
         name: "User Test",
         username: "user_test",
         email: "",
-        password: "123456",
+        password: "usertest123",
       })
     ).rejects.toEqual(new AppError("Email is required"));
   });
@@ -98,7 +98,7 @@ describe("All User Cases tests", () => {
         name: "User Test",
         username: "user_test",
         email: "user_test@example.com",
-        password: "12345",
+        password: "2",
       })).rejects.toEqual(new AppError("Password must have at least 8 characters, 1 letter and 1 number"));
   });
 });

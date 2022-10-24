@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { UsersRepository } from "modules/users/provider/prisma/repository/UsersRepository";
-import { IUsersRepository } from "modules/users/repositories/IUsersRepository";
 import { SignUpUseCase } from "./SignUpUseCase";
 
 export class SignUpController {

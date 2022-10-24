@@ -51,4 +51,11 @@ export class UsersRepository implements IUsersRepository {
       },
     });
   }
+  async findById(id: string): Promise<any> {
+    return await prisma.user.findFirst({
+      where: {
+        id,
+      },
+    });
+  }
 }

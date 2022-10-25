@@ -1,8 +1,8 @@
-import { AppError } from "../../errors/AppError";
-import { ICreateUserDTO } from "../../modules/users/dtos/ICreateUserDTO";
-import { IUpdateUserDTO } from "../../modules/users/dtos/IUpdateUserDTO";
-import { User } from "../../modules/users/entities/User";
-import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
+import { AppError } from "../../src/errors/AppError";
+import { ICreateUserDTO } from "../../src/modules/users/dtos/ICreateUserDTO";
+import { IUpdateUserDTO } from "../../src/modules/users/dtos/IUpdateUserDTO";
+import { User } from "../../src/modules/users/entities/User";
+import { IUsersRepository } from "../../src/modules/users/repositories/IUsersRepository";
 
 export class UsersRepositoryInMemory implements IUsersRepository {
 

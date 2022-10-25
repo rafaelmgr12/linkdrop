@@ -1,8 +1,8 @@
-import { SignUpUseCase } from "../../modules/users/useCases/signUp/SignUpUseCase";
+import { SignUpUseCase } from "../../src/modules/users/useCases/signUp/SignUpUseCase";
 import { UsersRepositoryInMemory } from "../repositories/InMemoryUserRepository";
 import { beforeEach, describe, expect, it } from "vitest";
-import { AppError } from "../../errors/AppError";
-import { LoginUseCase } from "../../modules/users/useCases/login/LoginUseCase";
+import { AppError } from "../../src/errors/AppError";
+import { LoginUseCase } from "../../src/modules/users/useCases/login/LoginUseCase";
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let signUpUseCase: SignUpUseCase;

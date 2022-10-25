@@ -1,5 +1,5 @@
-import { AppError } from './../../../errors/AppError';
-import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
+import { AppError } from '../errors/AppError';
+import { ICreateUserDTO } from "../modules/users/dtos/ICreateUserDTO";
 
 export function validateRegistration(data: ICreateUserDTO): void {
     if (!data.name) {

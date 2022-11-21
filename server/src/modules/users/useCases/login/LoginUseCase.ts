@@ -1,4 +1,4 @@
-import { GenerateTokenProvider } from './../../provider/token/GenerateTokenProvider';
+import { GenerateTokenProvider } from "./../../provider/token/GenerateTokenProvider";
 import { IRequesUserDTO } from "../../dtos/IResquestUserDTO";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 import { AppError } from "../../../../errors/AppError";
@@ -13,22 +13,25 @@ export class LoginUseCase {
     const usernameAlreadyExists = await this.usersRepository.findByUsername(
       data.username
     );
-
     if (!usernameAlreadyExists) {
       throw new AppError("Username or password incorrect");
     }
-    const passwordMatch = await compare(
-      data.password,
-      usernameAlreadyExists.password
-    );
+
+    let userPassword = usernameAlreadyExists.password;
+    let userId = usernameAlreadyExists.id;
+    if (!userPassword) {
+      userPassword = usernameAlreadyExists._password;
+      userId = usernameAlreadyExists._id;
+    }
+
+    const passwordMatch = await compare(data.password, userPassword);
 
     if (!passwordMatch) {
       throw new AppError("User or password incorrect");
     }
 
     const generateTokenProvider = new GenerateTokenProvider();
-    const token = await generateTokenProvider.execute(usernameAlreadyExists.id);
-
+    const token = await generateTokenProvider.execute(userId);
 
     return { token };
   }

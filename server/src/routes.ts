@@ -5,6 +5,7 @@ const router = Router();
 
 const signUpController = new SignUpController();
 
-router.post('/user', signUpController.handle);
+router.post('/singup', signUpController.handle);
+
 
 export { router };

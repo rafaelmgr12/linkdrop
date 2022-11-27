@@ -1,6 +1,6 @@
-import { ICreateLinkDTO } from "modules/links/dtos/ICreateLinkDTO";
-import { Link } from "modules/links/entity/Link";
-import { ILinkRepository } from "modules/links/repositories/ILinkRepository";
+import { ICreateLinkDTO } from "../../src/modules/links/dtos/ICreateLinkDTO";
+import { Link } from "../../src/modules/links/entity/Link";
+import { ILinkRepository } from "../../src/modules/links/repositories/ILinkRepository";
 
 
 export class LinkRepositoryInMemory implements ILinkRepository {

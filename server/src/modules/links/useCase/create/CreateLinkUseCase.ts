@@ -1,10 +1,10 @@
-import { ICreateLinkDTO } from "modules/links/dtos/ICreateLinkDTO";
-import { Link } from "modules/links/entity/Link";
-import { ILinkRepository } from "modules/links/repositories/ILinkRepository";
-import { UsersRepository } from "modules/users/provider/prisma/repository/UsersRepository";
+import { ILinkRepository } from '../../repositories/ILinkRepository';
+import { ICreateLinkDTO } from '../../dtos/ICreateLinkDTO';
+import { Link } from '../../entity/Link';
+
 
 export class CreateLinkUseCase {
-  constructor(private linkRepository: ILinkRepository, private usersRepository: UsersRepository) {}
+  constructor(private linkRepository: ILinkRepository) {}
 
   async execute(data: ICreateLinkDTO): Promise<Link> {
 

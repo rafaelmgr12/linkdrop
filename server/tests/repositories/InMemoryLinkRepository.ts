@@ -2,7 +2,6 @@ import { ICreateLinkDTO } from "../../src/modules/links/dtos/ICreateLinkDTO";
 import { Link } from "../../src/modules/links/entity/Link";
 import { ILinkRepository } from "../../src/modules/links/repositories/ILinkRepository";
 
-
 export class LinkRepositoryInMemory implements ILinkRepository {
   public links: Link[] = [];
 
@@ -13,7 +12,9 @@ export class LinkRepositoryInMemory implements ILinkRepository {
 
     return link;
   }
+  async findAll(): Promise<Link[]> {
 
-  
- 
+    return this.links;
+    
+  }
 }

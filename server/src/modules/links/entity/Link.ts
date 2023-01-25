@@ -10,8 +10,8 @@ export class Link {
 
   constructor(
     title: string,
-    url: string,
     description: string,
+    url: string,
     user_id: string,
     created_at?: Date,
     updated_at?: Date,
@@ -19,8 +19,8 @@ export class Link {
   ) {
     this._id = id ?? crypto.randomUUID().toString();
     this._title = title;
-    this._url = url;
     this._description = description;
+    this._url = url;
     this._user_id = user_id;
     this._created_at = created_at ?? new Date();
     this._updated_at = updated_at ?? new Date();

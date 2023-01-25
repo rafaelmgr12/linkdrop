@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  database: 
+    image: mysql
+    container_name: database_readerdrop
+    restart: always
+    ports: 
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: readerdrop
+      MYSQL_USER: rafael
+      MYSQL_PASSWORD: secret
+    volumes:
+      - ./data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: readerdrop
+    restart: always
+    ports: 
+      - 3333:3333
+    volumes: 
+      - .:/usr/app
+    links: 
+      - database
+    depends_on:
+      - database

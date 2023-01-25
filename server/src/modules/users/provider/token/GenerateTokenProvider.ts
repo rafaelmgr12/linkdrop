@@ -7,7 +7,7 @@ export class GenerateTokenProvider{
 
         const token = sign({}, hash, {
           subject: userId,
-          expiresIn: "20s",
+          expiresIn: "600s", //10 minutes
         });
 
         return token;

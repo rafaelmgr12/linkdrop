@@ -4,7 +4,7 @@ import { LinkRepository } from 'modules/links/provider/prisma/repository/LinksRe
 
 
 
-export class LinkAllLinksController {
+export class ListAllLinksController {
     async handle(request: Request, response: Response): Promise<Response> {
         const listAllLinksUseCase = new ListAllLinksUseCase(new LinkRepository);
         const links = await listAllLinksUseCase.execute();

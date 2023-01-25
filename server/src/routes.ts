@@ -19,7 +19,7 @@ router.post("/login", loginController.handle);
 
 
 router.get("/links", ensureAuthenticated,listAllLinksController.handle);
-router.get("/links", ensureAuthenticated,createLinkController.handle);
+router.post("/links", ensureAuthenticated,createLinkController.handle);
 
 router.get("/courses",ensureAuthenticated ,(request, response) => {
     return response.json([
